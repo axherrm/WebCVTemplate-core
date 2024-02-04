@@ -2,7 +2,7 @@
   <div class="icon-container">
     <span *ngIf="input.primeIcon" [class]="'pi icon ' + input.primeIcon"></span>
     <div *ngIf="input.iconRef" class="icon">
-      <img [src]="input.iconRef" alt="" height="32">
+      <img [src]="input.iconRef" [alt]="'icon ' + input.iconRef" height="32">
     </div>
   </div>
 

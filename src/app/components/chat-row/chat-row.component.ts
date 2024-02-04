@@ -1,5 +1,6 @@
 import {Component, HostBinding, Input} from '@angular/core';
 import {NgIf} from "@angular/common";
+import {DataService} from "../../data/data.service";
 
 @Component({
   selector: 'chat-row',
@@ -26,6 +27,8 @@ export class ChatRowComponent {
   // @HostBinding("style.flex-direction") flexDirection: string = "row";
   @HostBinding("class.left") get left() { return this.isLeft() }
   @HostBinding("class.right") get right() { return !this.isLeft() }
+
+  constructor(readonly dataService: DataService) {}
 
   isLeft(): boolean {
     return this.side === "left";
