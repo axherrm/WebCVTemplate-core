@@ -40,7 +40,7 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/cv",
-            "index": "src/index.html",
+            "index": "./../input/index.html",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
@@ -48,7 +48,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              {"glob": "**/*", "ignore": ["data/*"], "input": "./../input", "output": "./"},
+              {"glob": "**/*", "ignore": ["data/*", "index.html"], "input": "./../input", "output": "./"},
               "src/assets",
               "src/googlecbf22a41e90209ec.html"
             ],
