@@ -36,6 +36,7 @@ export interface SkillCategory {
 export interface ILanguagePack {
   /**
    * This is the identifier which is used in the languages array and for definition of the object.
+   * Should be compliant with https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang?retiredLocale=de
    */
   id: string;
   name: string;

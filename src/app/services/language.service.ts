@@ -1,5 +1,6 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {DataService} from "./data.service";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,8 @@ export class LanguageService {
    */
   langChange: EventEmitter<string> = new EventEmitter<string>(true);
 
-  constructor(private dataService: DataService) {
-    this.determineLanguage();
+  constructor(private dataService: DataService, readonly router: Router) {
+    this.determineLanguageOnStartup();
   }
 
   /**
@@ -23,32 +24,59 @@ export class LanguageService {
    *  2. default language of browser
    *  3. default language configured in general.json
    */
-  determineLanguage(): void {
+  determineLanguageOnStartup(): void {
     let lang = localStorage.getItem("lang");
     if (lang) {
-      this.setLang(lang);
+      this.setLang(lang, false);
       return;
     }
     lang = navigator.language;
     if (lang) {
       lang = lang.trim().split("-")[0];
       if (this.dataService.loadedLanguages.includes(lang)) {
-        this.setLang(lang);
+        this.setLang(lang, false);
         return;
       }
     }
-    this.setLang(this.dataService.defaultLang);
+    this.setLang(this.dataService.defaultLang, false);
+  }
+
+  /**
+   * As {@link determineLanguageOnStartup} is executed before URL langParam is available,
+   * this method checks if such a param is present and if it differs from previous selected language.
+   * @param langParam
+   */
+  searchForURLLang(langParam: string | null) {
+    if (langParam) {
+      const lang = langParam.trim();
+      if (this.dataService.loadedLanguages.includes(lang)) {
+        if (this.lang !== lang) {
+          this.setLang(lang, true);
+          return;
+        }
+      }
+    }
+    this.writeToURL(this.lang);
   }
 
   /**
    * Sets new active language, writes it to local storage and (re-)loads data for language
    * @param newLang
+   * @param writeToURL
    */
-  setLang(newLang: string): void {
+  setLang(newLang: string, writeToURL: boolean): void {
     this.lang = newLang;
     localStorage.setItem("lang", this.lang);
     this.dataService.loadData(this.lang);
     this.langChange.emit(newLang);
+    if (writeToURL) {
+      this.writeToURL(this.lang);
+    }
+  }
+
+  writeToURL(lang: string) {
+    document.documentElement.lang = lang;
+    this.router.navigate([lang]);
   }
 
 }

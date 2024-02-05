@@ -12,6 +12,7 @@ import {DataService} from "../services/data.service";
 import {LanguageService} from "../services/language.service";
 import gsap from "gsap";
 import {SidebarService} from "../services/sidebar.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'main-content',
@@ -34,8 +35,12 @@ export class MainContentComponent {
 
   alarmClockTimelines: gsap.core.Timeline[] = [];
 
-  constructor(readonly dataService: DataService, readonly langService: LanguageService, readonly sidebarService: SidebarService) {
+  constructor(readonly dataService: DataService,
+              readonly langService: LanguageService,
+              readonly sidebarService: SidebarService,
+              readonly route: ActivatedRoute) {
     this.langService.langChange.subscribe(() => this.onLangChange());
+    this.langService.searchForURLLang(this.route.snapshot.paramMap.get("lang"));
   }
 
   ngAfterViewInit(): void {

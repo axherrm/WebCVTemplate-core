@@ -6,6 +6,10 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter([
       {
+        path: ":lang",
+        component: MainContentComponent,
+      },
+      {
         path: "",
         component: MainContentComponent
       },

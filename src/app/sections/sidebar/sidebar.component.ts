@@ -61,7 +61,7 @@ export class SidebarComponent {
         id: langPack.id,
         icon: `fi fis fi-${langPack.isoAlpha2} flag-icon${flagActive}`,
         command: () => {
-          this.langService.setLang(lang);
+          this.langService.setLang(lang, true);
         }
       })
     }

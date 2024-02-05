@@ -48,9 +48,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              {"glob": "**/*", "ignore": ["data/*", "index.html"], "input": "./../input", "output": "./"},
-              "src/assets",
-              "src/googlecbf22a41e90209ec.html"
+              {"glob": "**/*", "ignore": ["data/*", "index.html"], "input": "./../input", "output": "./"}
             ],
             "styles": [
               "src/styles.scss",
@@ -110,9 +108,7 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              {"glob": "**/*", "input": "./input", "output": "./"},
-              "src/assets",
-              "src/googlecbf22a41e90209ec.html"
+              {"glob": "**/*", "input": "./input", "output": "./"}
             ],
             "styles": [
               "src/styles.scss",

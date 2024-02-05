@@ -22,6 +22,7 @@ import {MainContentComponent} from "./main-content/main-content.component";
 gsap.registerPlugin(ScrollTrigger);
 
 import "./js/lenis.js";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-root',
@@ -53,11 +54,20 @@ export class AppComponent {
   @ViewChild(SidebarComponent, {read: ElementRef}) sidebar: ElementRef;
   @ViewChild(MainContentComponent) mainContent: MainContentComponent;
 
-  constructor(readonly dataService: DataService) {}
+  constructor(readonly dataService: DataService, readonly titleService: Title) {}
 
   ngAfterViewInit(): void {
+    this.setTitle();
     this.addProgressBarAnimation();
     this.addSidebarAnimation();
+  }
+
+  /**
+   * Sets title of website, visible in browser tab. Static index.html title could differ,
+   * e.g. to use a different title for Google.
+   */
+  setTitle() {
+    this.titleService.setTitle(`CV - ${this.dataService.languagePack.heading}`);
   }
 
   addProgressBarAnimation() {
