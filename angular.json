@@ -39,6 +39,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "baseHref": "./",
             "outputPath": "dist/cv",
             "index": "./../input/index.html",
             "browser": "src/main.ts",
