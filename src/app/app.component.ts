@@ -17,7 +17,7 @@ import {AboutCardComponent} from "./components/about-card/about-card.component";
 import {AboutComponent} from "./sections/about/about.component";
 import {ContactComponent} from "./sections/contact/contact.component";
 import {FooterSectionComponent} from "./sections/footer-section/footer-section.component";
-import {LanguageService} from "./services/language.service";
+import {MainContentComponent} from "./main-content/main-content.component";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -49,43 +49,22 @@ import "./js/lenis.js";
 export class AppComponent {
 
   @ViewChild("backgroundImg", {read: ElementRef}) backgroundImage: ElementRef;
-  @ViewChild("outest_container", {read: ElementRef}) outestContainer: ElementRef;
   @ViewChild("progress_bar", {read: ElementRef}) progressBar: ElementRef;
-  // @ViewChild("content_container", {read: ElementRef}) contentContainer: ElementRef;
-  @ViewChild("education_card", {read: ElementRef}) educationCard: ElementRef;
-  @ViewChild("sidebar", {read: ElementRef}) sidebar: ElementRef;
+  @ViewChild(SidebarComponent, {read: ElementRef}) sidebar: ElementRef;
+  @ViewChild(MainContentComponent) mainContent: MainContentComponent;
 
-  alarmClockTimelines: gsap.core.Timeline[] = [];
-
-  constructor(readonly dataService: DataService, readonly langService: LanguageService) {
-    this.langService.langChange.subscribe(() => this.onLangChange());
-  }
+  constructor(readonly dataService: DataService) {}
 
   ngAfterViewInit(): void {
-    this.addSidebarAnimation();
     this.addProgressBarAnimation();
-    // @ts-ignore
-    for (let el of document.getElementsByClassName("alarm-clock-animated")) {
-      this.addAlarmClockAnimation(el);
-    }
-  }
-
-  onLangChange() {
-    this.alarmClockTimelines.forEach(tl => tl.kill());
-    this.alarmClockTimelines = [];
-
-    let objectsToAnimate = document.getElementsByClassName("alarm-clock-animated");
-    // @ts-ignore
-    for (let el of objectsToAnimate) {
-      this.addAlarmClockAnimation(el);
-    }
+    this.addSidebarAnimation();
   }
 
   addProgressBarAnimation() {
     const tl: gsap.core.Timeline = gsap.timeline({
       scrollTrigger: {
         start: "top top",
-        trigger: this.outestContainer.nativeElement,
+        trigger: "body",
         end: "bottom bottom",
         scrub: true,
       }
@@ -100,9 +79,9 @@ export class AppComponent {
   addSidebarAnimation() {
     const tl: gsap.core.Timeline = gsap.timeline({
       scrollTrigger: {
-        start: "top 90%",
-        trigger: this.educationCard.nativeElement,
-        end: "top top",
+        start: "top -50%",
+        trigger: "body",
+        end: "top -100%",
         scrub: true,
       }
     });
@@ -118,51 +97,6 @@ export class AppComponent {
         display: "var(--display-side-elements-flex)",
         opacity: 1,
       }, "<");
-  }
-
-  addAlarmClockAnimation(el: HTMLElement) {
-    const bottomHalfTl: gsap.core.Timeline = gsap.timeline({
-      scrollTrigger: {
-        start: "top bottom",
-        trigger: el,
-        end: "center center",
-        // markers: true,
-        scrub: true,
-      },
-      defaults: {
-        ease: "power1.out"
-      }
-    });
-    const upperHalfTl: gsap.core.Timeline = gsap.timeline({
-      scrollTrigger: {
-        start: "center center",
-        trigger: el,
-        end: "bottom top",
-        // markers: true,
-        scrub: true,
-      },
-      defaults: {
-        ease: "power1.in"
-      }
-    });
-    bottomHalfTl.fromTo(el, {
-      scale: 0.9,
-      filter: "brightness(0.8)",
-      rotationX: "-30deg",
-      transformPerspective: "1400px",
-    }, {
-      scale: 1,
-      filter: "brightness(1)",
-      rotationX: "0deg",
-      transformPerspective: "1000px",
-    });
-    upperHalfTl.to(el, {
-      scale: 0.9,
-      filter: "brightness(0.8)",
-      rotationX: "30deg",
-      transformPerspective: "1400px",
-    })
-    this.alarmClockTimelines.push(bottomHalfTl, upperHalfTl);
   }
 
 }

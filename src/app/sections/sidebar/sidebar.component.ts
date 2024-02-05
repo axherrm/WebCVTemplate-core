@@ -13,6 +13,7 @@ import {MenuItem} from "primeng/api";
 import {LanguagePack} from "../../model/model";
 import * as generalJson from "../../../../../input/data/general.json";
 import {LanguageService} from "../../services/language.service";
+import {SidebarService} from "../../services/sidebar.service";
 
 @Component({
   selector: 'sidebar',
@@ -31,17 +32,15 @@ export class SidebarComponent {
 
   @ViewChildren("navbar_dot", {read: NavbarDotComponent}) dots: QueryList<NavbarDotComponent>;
 
-  sectionActive = 0;
-
   languagesMenuItems: MenuItem[] = [];
 
-  constructor(readonly changeDetectorRef: ChangeDetectorRef, readonly dataService: DataService, readonly langService: LanguageService) {
+  constructor(readonly sidebarService: SidebarService,
+              readonly dataService: DataService,
+              readonly langService: LanguageService,
+              readonly changeDetectorRef: ChangeDetectorRef) {
     langService.langChange.subscribe(newLang => this.fillLanguageButton(newLang));
     this.fillLanguageButton(this.langService.lang);
-  }
-
-  ngAfterViewInit(): void {
-    this.addSelectedAnimation();
+    this.sidebarService.sectionUpdate.subscribe(() => changeDetectorRef.detectChanges())
   }
 
   // @HostListener("mouseleave")
@@ -76,25 +75,4 @@ export class SidebarComponent {
     })
   }
 
-  addSelectedAnimation() {
-    for (let i = 0; i < this.dataService.languagePack.sections.length; i++) {
-      const section = this.dataService.languagePack.sections[i];
-      ScrollTrigger.create({
-        start: "top 50%",
-        trigger: `#${section.id}`,
-        end: "+=1",
-        // markers: true,
-        onEnter: self => {
-          // console.log("Active section is ", i, "onEnter");
-          this.sectionActive = i;
-          this.changeDetectorRef.detectChanges();
-        },
-        onEnterBack: self => {
-          // console.log("Active section is ", i-1, "onEnterBack");
-          this.sectionActive = i-1;
-          this.changeDetectorRef.detectChanges();
-        }
-      });
-    }
-  }
 }
