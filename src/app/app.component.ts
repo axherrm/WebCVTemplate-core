@@ -18,11 +18,11 @@ import {AboutComponent} from "./sections/about/about.component";
 import {ContactComponent} from "./sections/contact/contact.component";
 import {FooterSectionComponent} from "./sections/footer-section/footer-section.component";
 import {MainContentComponent} from "./main-content/main-content.component";
+import {Title} from "@angular/platform-browser";
 
 gsap.registerPlugin(ScrollTrigger);
 
 import "./js/lenis.js";
-import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-root',
