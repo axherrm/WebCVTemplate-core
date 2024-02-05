@@ -1,6 +1,6 @@
 import {Component, HostBinding, Input} from '@angular/core';
 import {NgIf} from "@angular/common";
-import {DataService} from "../../data/data.service";
+import {DataService} from "../../services/data.service";
 
 @Component({
   selector: 'chat-row',

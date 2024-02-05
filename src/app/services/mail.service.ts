@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import emailjs from '@emailjs/browser';
-import {DataService} from "../data/data.service";
+import {DataService} from "./data.service";
 
 @Injectable({
   providedIn: 'root'

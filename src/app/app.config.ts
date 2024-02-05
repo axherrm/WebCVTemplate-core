@@ -1,4 +1,4 @@
-import { ApplicationConfig } from '@angular/core';
+import {ApplicationConfig} from '@angular/core';
 import {IMAGE_LOADER, ImageLoaderConfig} from "@angular/common";
 
 export const appConfig: ApplicationConfig = {

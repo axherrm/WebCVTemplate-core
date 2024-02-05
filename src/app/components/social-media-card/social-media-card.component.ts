@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {SocialMediaItem} from "../../data/model";
+import {SocialMediaItem} from "../../model/model";
 import {NgIf} from "@angular/common";
 
 @Component({

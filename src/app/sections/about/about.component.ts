@@ -5,7 +5,7 @@ import {BadgeModule} from "primeng/badge";
 import {BadgeComponent} from "../../components/badge/badge.component";
 import {NgForOf, NgIf} from "@angular/common";
 import {CustomButtonComponent} from "../../components/custom-button/custom-button.component";
-import {DataService} from "../../data/data.service";
+import {DataService} from "../../services/data.service";
 
 @Component({
   selector: 'about',

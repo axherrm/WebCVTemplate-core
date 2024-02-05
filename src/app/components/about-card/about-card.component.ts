@@ -1,8 +1,8 @@
 import {Component, ElementRef, HostBinding, Input, ViewChild} from '@angular/core';
 import {NgIf} from "@angular/common";
-import {AboutCard} from "../../data/model";
+import {AboutCard} from "../../model/model";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
-import {DataService} from "../../data/data.service";
+import {DataService} from "../../services/data.service";
 
 @Component({
   selector: 'about-card',

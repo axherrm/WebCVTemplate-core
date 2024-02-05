@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, ElementRef, HostListener, Renderer2, ViewChild} from '@angular/core';
 import {ChatRowComponent} from "../../components/chat-row/chat-row.component";
 import {NgForOf} from "@angular/common";
-import {DataService} from "../../data/data.service";
+import {DataService} from "../../services/data.service";
 import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MailService} from "../../services/mail.service";
 import gsap from "gsap";

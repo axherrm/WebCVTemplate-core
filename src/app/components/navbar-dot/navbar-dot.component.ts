@@ -1,5 +1,5 @@
 import {Component, EventEmitter, HostBinding, HostListener, Input, Output} from '@angular/core';
-import {Section} from "../../data/model";
+import {Section} from "../../model/model";
 import gsap from "gsap";
 import {ScrollToPlugin} from "gsap/ScrollToPlugin";
 

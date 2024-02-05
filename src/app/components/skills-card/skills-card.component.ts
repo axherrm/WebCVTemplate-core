@@ -7,7 +7,7 @@ import {
   ViewChild,
   ViewChildren
 } from '@angular/core';
-import {SkillCategory} from "../../data/model";
+import {SkillCategory} from "../../model/model";
 import {NgForOf} from "@angular/common";
 import {SkillCardComponent} from "../skill-card/skill-card.component";
 

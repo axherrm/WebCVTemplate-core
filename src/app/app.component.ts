@@ -1,10 +1,10 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {TimelineModule} from 'primeng/timeline';
 import {BadgeModule} from "primeng/badge";
 import gsap from 'gsap';
 import {ScrollTrigger} from "gsap/ScrollTrigger";
-import {DataService} from "./data/data.service";
+import {DataService} from "./services/data.service";
 import {SpeedDialModule} from "primeng/speeddial";
 import {OverlayPanelModule} from "primeng/overlaypanel";
 import 'js-circle-progress';
@@ -15,19 +15,19 @@ import {NavbarDotComponent} from "./components/navbar-dot/navbar-dot.component";
 import {SidebarComponent} from "./sections/sidebar/sidebar.component";
 import {AboutCardComponent} from "./components/about-card/about-card.component";
 import {AboutComponent} from "./sections/about/about.component";
+import {ContactComponent} from "./sections/contact/contact.component";
+import {FooterSectionComponent} from "./sections/footer-section/footer-section.component";
+import {LanguageService} from "./services/language.service";
 
 gsap.registerPlugin(ScrollTrigger);
 
 import "./js/lenis.js";
-import {ContactComponent} from "./sections/contact/contact.component";
-import {FooterSectionComponent} from "./sections/footer-section/footer-section.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     CommonModule,
-    NgOptimizedImage,
     TimelineModule,
     BadgeModule,
     SpeedDialModule,
@@ -55,13 +55,10 @@ export class AppComponent {
   @ViewChild("education_card", {read: ElementRef}) educationCard: ElementRef;
   @ViewChild("sidebar", {read: ElementRef}) sidebar: ElementRef;
 
-  dataService: DataService;
-
   alarmClockTimelines: gsap.core.Timeline[] = [];
 
-  constructor(dataService: DataService) {
-    this.dataService = dataService;
-    this.dataService.langChange.subscribe(() => this.onLangChange());
+  constructor(readonly dataService: DataService, readonly langService: LanguageService) {
+    this.langService.langChange.subscribe(() => this.onLangChange());
   }
 
   ngAfterViewInit(): void {
