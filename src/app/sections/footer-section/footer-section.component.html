@@ -8,10 +8,11 @@
   </a>
 
   <div class="spacer"></div>
-
-  <div class="button">
-    <span class="text">
-      {{ appVersion }}
-    </span>
-  </div>
+  <a [href]="githubURL" target="_blank">
+    <div class="button">
+      <span class="text">
+        {{ appName }} {{ appVersion }}
+      </span>
+    </div>
+  </a>
 </footer>
