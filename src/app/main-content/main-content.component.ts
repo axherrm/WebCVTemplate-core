@@ -89,18 +89,18 @@ export class MainContentComponent {
     });
     bottomHalfTl.fromTo(el, {
       scale: 0.9,
-      filter: "brightness(0.8)",
+      // filter: "brightness(0.8)",
       rotationX: "-30deg",
       transformPerspective: "1400px",
     }, {
       scale: 1,
-      filter: "brightness(1)",
+      // filter: "brightness(1)",
       rotationX: "0deg",
       transformPerspective: "1000px",
     });
     upperHalfTl.to(el, {
       scale: 0.9,
-      filter: "brightness(0.8)",
+      // filter: "brightness(0.8)",
       rotationX: "30deg",
       transformPerspective: "1400px",
     })

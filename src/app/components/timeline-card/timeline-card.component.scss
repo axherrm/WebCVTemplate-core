@@ -15,10 +15,10 @@
 
 .timeline-card-dark {
   @extend .card;
-  background: rgb(75,75,75);
-  color: #dcdcdc;
+  background: #262626;
+  color: white;
   .subheading {
-    color: #dedede;
+    color: #cbcbcb;
   }
 }
 

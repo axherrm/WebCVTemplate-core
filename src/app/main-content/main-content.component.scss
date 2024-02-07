@@ -52,18 +52,18 @@
       width: 1.6rem;
       background-color: #ffffff;
       border-radius: 50%;
-      border: 3px solid rgba(75,75,75,1);
+      border: 3px solid #262626;
       display: inline-block;
     }
   }
 
   .timeline-date-light {
     background: white;
-    color: #4B5563;
+    color: #262626;
   }
 
   .timeline-date-dark {
-    background: rgb(75,75,75);
+    background: #262626;
   }
 
   .p-timeline-vertical.p-timeline-alternate .p-timeline-event:nth-child(2n) {
