@@ -114,6 +114,7 @@ export interface ContactMessages {
   successMessages: string[];
   failedMessages: string[];
   tooManyMessages: string[];
+  placeholder: string;
 }
 
 export interface SocialMediaItem {

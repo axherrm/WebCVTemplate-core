@@ -8,7 +8,7 @@
     <form (submit)="sendMessage()" (keydown.enter)="$event.preventDefault(); sendMessage()" (keydown.shift.enter)="noop.prototype(); // noop">
       <div class="icon-container invisible"></div>
       <div class="gradient-border">
-        <textarea #chat_input rows="1" id="chat-input"  [formControl]="text"></textarea>
+        <textarea #chat_input rows="1" id="chat-input" [formControl]="text" [placeholder]="dataService.contact.placeholder"></textarea>
       </div>
       <button type="submit" class="icon-container invisible" [class.invisible]="text.hasError('required')"><i class="pi pi-send icon"></i></button>
     </form>

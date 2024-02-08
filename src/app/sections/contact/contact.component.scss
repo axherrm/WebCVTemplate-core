@@ -79,9 +79,15 @@ form {
 
       border-radius: inherit;
       padding: $textarea-padding 1.25rem;
+
+      color: #262626;
       &:focus {
         outline: none;
         box-shadow: none;
+      }
+
+      &::placeholder {
+        color: black;
       }
     }
   }
