@@ -36,3 +36,12 @@ jobs:
           repository: axherrm/WebCVTemplate
           event-type: release
           client-payload: '{"version": "v${{ steps.check.outputs.version }}"}'
+
+      - name: Trigger release in CV repo
+        if: steps.check.outputs.changed == 'true'
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.PAT }}
+          repository: axherrm/CV
+          event-type: release
+          client-payload: '{"version": "v${{ steps.check.outputs.version }}"}'
