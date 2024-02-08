@@ -97,6 +97,7 @@ form {
     justify-content: center;
     align-items: center;
     border: 0;
+    cursor: pointer;
 
     transition: all .1s linear;
     &.invisible {
