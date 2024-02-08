@@ -22,7 +22,7 @@ button {
   border-radius: var(--border-radius);
 
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 1s ease;
   position: relative;
   display: flex;
   flex-wrap: nowrap;
@@ -49,14 +49,16 @@ button {
     z-index: -1;
     background: linear-gradient(to right, #a445b2, #fa4299);
     border-radius: var(--border-radius);
-    transition: all 0.3s ease;
+    transition: all 1s ease;
   }
 
   &:hover {
+    transition: all 0.3s ease;
     color: #fff;
     &:before {
       left: 0;
       width: 100%;
+      transition: all 0.3s ease;
     }
   }
 }
