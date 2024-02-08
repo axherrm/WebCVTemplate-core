@@ -29,7 +29,6 @@
     }
 
     .fake-triangle {
-      background: #a445b2;
       transform: translateX(1.4rem) rotateZ(45deg);
     }
   }
@@ -46,8 +45,11 @@
     }
 
     .fake-triangle {
-      background: #fa4299;
       transform: translateX(-1.4rem) rotateZ(-45deg);
+    }
+
+    .message-box {
+      background: linear-gradient(270deg, #a445b2, #fa4299);
     }
   }
 
