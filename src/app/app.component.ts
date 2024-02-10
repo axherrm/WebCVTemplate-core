@@ -57,17 +57,8 @@ export class AppComponent {
   constructor(readonly dataService: DataService, readonly titleService: Title) {}
 
   ngAfterViewInit(): void {
-    this.setTitle();
     this.addProgressBarAnimation();
     this.addSidebarAnimation();
-  }
-
-  /**
-   * Sets title of website, visible in browser tab. Static index.html title could differ,
-   * e.g. to use a different title for Google.
-   */
-  setTitle() {
-    this.titleService.setTitle(`CV - ${this.dataService.languagePack.heading}`);
   }
 
   addProgressBarAnimation() {
