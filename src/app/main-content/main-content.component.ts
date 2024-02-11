@@ -44,6 +44,16 @@ export class MainContentComponent {
   }
 
   ngAfterViewInit(): void {
+    if (document.readyState === 'complete') {
+      this.animateHeading();
+    } else {
+      document.onreadystatechange = () => {
+        if (document.readyState == "complete") {
+          this.animateHeading();
+        }
+      }
+    }
+
     // @ts-ignore
     for (let el of document.getElementsByClassName("alarm-clock-animated")) {
       this.addAlarmClockAnimation(el);
@@ -60,6 +70,22 @@ export class MainContentComponent {
     for (let el of objectsToAnimate) {
       this.addAlarmClockAnimation(el);
     }
+  }
+
+  animateHeading() {
+    gsap.timeline()
+      .to(".heading-letter", {
+        rotationY: 360,
+        duration: 1.8,
+        ease: "power3.inOut",
+        stagger: 0.1
+      })
+      .to(".subheading-letter", {
+        opacity: 1,
+        duration: 0.6,
+        ease: "power3.inOut",
+        stagger: 0.04
+      }, ">-20%")
   }
 
   addAlarmClockAnimation(el: HTMLElement) {
