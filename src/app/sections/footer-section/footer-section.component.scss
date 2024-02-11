@@ -1,5 +1,7 @@
 :host {
   position: fixed;
+  // in front of sidebar
+  z-index: 1001;
   display: none;
   opacity: 0;
   bottom: 0;
@@ -26,7 +28,6 @@ footer {
   //background: #262626;
   //backdrop-filter: blur(5px);
   position: relative;
-  z-index: 10000;
   border-radius: 2rem;
   display: flex;
   flex-wrap: nowrap;
