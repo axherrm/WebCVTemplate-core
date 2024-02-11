@@ -44,6 +44,7 @@ export class MainContentComponent {
   }
 
   ngAfterViewInit(): void {
+    this.addHeadingAnimation();
     // @ts-ignore
     for (let el of document.getElementsByClassName("alarm-clock-animated")) {
       this.addAlarmClockAnimation(el);
@@ -60,6 +61,34 @@ export class MainContentComponent {
     for (let el of objectsToAnimate) {
       this.addAlarmClockAnimation(el);
     }
+  }
+
+  addHeadingAnimation() {
+    // gsap.from(".heading-letter", {
+    //   y: "50vh",
+    //   rotationY: 270,
+    //   scale: 0,
+    //   opacity: 0.4,
+    //   duration: 1,
+    //   ease: "power3.inOut",
+    //   stagger: 0.05
+    // })
+    gsap.from(".heading-letter", {
+      rotationY: 360 * 1 + 270,
+      duration: 1.8,
+      ease: "power3.inOut",
+      stagger: 0.1
+    })
+    // gsap.from(".heading-letter", {
+    //   keyframes: {
+    //     "0%": {y: "-80vh"},
+    //     "60%": {y: "5vh"},
+    //     "100%": {y: "0"},
+    //   },
+    //   duration: 3,
+    //   ease: "expo.in",
+    //   stagger: 0.15
+    // })
   }
 
   addAlarmClockAnimation(el: HTMLElement) {

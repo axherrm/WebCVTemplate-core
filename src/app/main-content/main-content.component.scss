@@ -10,6 +10,9 @@
     letter-spacing: 0.8vw;
     margin-bottom: 0;
   }
+  .heading-letter {
+    display: inline-block;
+  }
 }
 #main-subheading {
   @extend #main-heading;
