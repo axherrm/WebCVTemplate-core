@@ -124,3 +124,14 @@ export interface SocialMediaItem {
   iconRef?: string;
   link: string;
 }
+
+export interface BackgroundSettings {
+  backgroundImageFolder: string;
+  resolutions: number[];
+  fileExtension: string;
+  /**
+   * Base64 encoded low res JPG, maximum of 10KB as this data is inlined.
+   * Encoded data can be retrieved with command: base64 -i YOUR_IMAGE.jpg -o output.txt
+   */
+  preview?: string;
+}

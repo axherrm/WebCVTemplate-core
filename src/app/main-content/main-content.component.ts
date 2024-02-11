@@ -79,7 +79,7 @@ export class MainContentComponent {
         duration: 1.8,
         ease: "power3.inOut",
         stagger: 0.1
-      })
+      }, "0.3")
       .to(".subheading-letter", {
         opacity: 1,
         duration: 0.6,

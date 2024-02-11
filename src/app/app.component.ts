@@ -18,7 +18,6 @@ import {AboutComponent} from "./sections/about/about.component";
 import {ContactComponent} from "./sections/contact/contact.component";
 import {FooterSectionComponent} from "./sections/footer-section/footer-section.component";
 import {MainContentComponent} from "./main-content/main-content.component";
-import {Title} from "@angular/platform-browser";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -49,16 +48,21 @@ import "./js/lenis.js";
 })
 export class AppComponent {
 
-  @ViewChild("backgroundImg", {read: ElementRef}) backgroundImage: ElementRef;
+  @ViewChild("backgroundImgContainer", {read: ElementRef<HTMLDivElement>}) backgroundImageContainer: ElementRef<HTMLDivElement>;
   @ViewChild("progress_bar", {read: ElementRef}) progressBar: ElementRef;
   @ViewChild(SidebarComponent, {read: ElementRef}) sidebar: ElementRef;
   @ViewChild(MainContentComponent) mainContent: MainContentComponent;
 
-  constructor(readonly dataService: DataService, readonly titleService: Title) {}
+  constructor(readonly dataService: DataService) {}
 
   ngAfterViewInit(): void {
     this.addProgressBarAnimation();
     this.addSidebarAnimation();
+  }
+
+  onBackgroundLoaded() {
+    while (!this.backgroundImageContainer.nativeElement.lastChild) {}
+    this.backgroundImageContainer.nativeElement.lastChild.remove();
   }
 
   addProgressBarAnimation() {
@@ -87,7 +91,7 @@ export class AppComponent {
       }
     });
     tl
-      .to(this.backgroundImage.nativeElement, {
+      .to(this.backgroundImageContainer.nativeElement, {
         filter: "blur(2px)"
       })
       .fromTo(this.sidebar.nativeElement, {

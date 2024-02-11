@@ -1,17 +1,25 @@
 @use 'style/lenis';
 
-#background-img {
+#background-img-container {
   position: fixed;
   width: 100vw;
   height: 100vh;
   z-index: -100;
   display: flex;
   img {
+    position: relative;
     min-width:100vw;
     min-height:100vh;
     width: auto;
     height: auto;
     object-fit: cover;
+    color: transparent;
+    z-index: -80;
+    &:nth-child(2) {
+      z-index: -81;
+      // position both images on top of each other
+      transform: translateX(-100vw);
+    }
   }
 }
 

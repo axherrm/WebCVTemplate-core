@@ -1,18 +1,14 @@
 <div style="position: relative"> <!-- position: relative needed for absolute footer -->
   <!-- Absolute and fixed control elements-->
-  <div #backgroundImg id="background-img">
+  <div #backgroundImgContainer id="background-img-container">
     <img
-      srcset= "./assets/avatar/600.png 600w,
-               ./assets/avatar/1000.png 1000w,
-               ./assets/avatar/1500.png 1500w,
-               ./assets/avatar/2000.png 2000w,
-               ./assets/avatar/2500.png 2500w,
-               ./assets/avatar/3000.png 3000w,
-               ./assets/avatar/6000.png 6000w"
+      [srcset]="dataService.getBackgroundSrcSet()"
       sizes="100vw"
       [alt]="'Image of ' + dataService.languagePack.heading"
       fetchpriority="high" loading="eager"
+      (load)="onBackgroundLoaded()"
     />
+    <img [src]="'data:image/jpg;base64,' + dataService.backgroundSettings.preview" alt="Preview of background image">
   </div>
   <div class="progressbar-container"><div #progress_bar class="progressbar"></div></div>
   <sidebar></sidebar>
