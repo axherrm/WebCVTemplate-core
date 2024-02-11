@@ -1,23 +1,26 @@
 #main-heading {
   color: #ffffff;
-  font-size: 7vw;
-  letter-spacing: 2.2vw;
-  font-family: 'Balthazar', serif;
-  margin-bottom: 3vh;
+  font-size: 9vw;
+  letter-spacing: 1.3vw;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  margin-bottom: 7vh;
   @media (max-aspect-ratio: 1/1) {
-    font-size: 9vw;
-    letter-spacing: 1.6vw;
+    font-size: 13vw;
+    letter-spacing: 0.8vw;
+    margin-bottom: 0;
   }
 }
 #main-subheading {
   @extend #main-heading;
-  font-size: 1.5vw;
+  font-size: 2vw;
   letter-spacing: 0.5vw;
   font-style: italic;
+  font-weight: 300;
   transform: translateX(-20vw);
   @media (max-aspect-ratio: 1/1) {
-    font-size: 3vw;
-    letter-spacing: 0.6vw;
+    font-size: 3.5vw;
+    margin-bottom: 10vh;
   }
 }
 

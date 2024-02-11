@@ -1,9 +1,6 @@
 <div id="home-start" style="position:relative; top: -30vh; display: table; height: 130vh; width: 100vw;">
   <div style="display: table-cell; vertical-align: middle; text-align: center;">
-    <h1 id="main-heading">
-      <uppercase-letter *ngFor="let letter of dataService.languagePack.heading.split('')" [letter]="letter">
-      </uppercase-letter>
-    </h1>
+    <h1 id="main-heading" [innerHTML]="dataService.languagePack.heading"></h1>
     <h2 id="main-subheading" [innerHTML]="dataService.languagePack.subheading"></h2>
   </div>
 </div>

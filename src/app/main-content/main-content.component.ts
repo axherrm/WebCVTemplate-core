@@ -13,7 +13,6 @@ import {LanguageService} from "../services/language.service";
 import gsap from "gsap";
 import {SidebarService} from "../services/sidebar.service";
 import {ActivatedRoute} from "@angular/router";
-import {UppercaseLetterComponent} from "../components/uppercase-text/uppercase-letter.component";
 
 @Component({
   selector: 'main-content',
@@ -27,8 +26,7 @@ import {UppercaseLetterComponent} from "../components/uppercase-text/uppercase-l
     SharedModule,
     SkillsCardComponent,
     TimelineCardComponent,
-    TimelineModule,
-    UppercaseLetterComponent
+    TimelineModule
   ],
   templateUrl: './main-content.component.html',
   styleUrl: './main-content.component.scss'
