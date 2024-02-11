@@ -27,6 +27,7 @@ export class DataService {
 
   defaultLang: string = generalJson.defaultLanguage;
   loadedLanguages: string[] = generalJson.languages;
+  showAboutWebsite: boolean = generalJson.showAboutWebsite;
   mailSettings: MailSettings = contactJson["mail-settings"];
   socialMedia: SocialMediaItem[] = contactJson["social-media"];
 

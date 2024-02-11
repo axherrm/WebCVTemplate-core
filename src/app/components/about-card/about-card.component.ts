@@ -1,5 +1,5 @@
 import {Component, ElementRef, HostBinding, Input, ViewChild} from '@angular/core';
-import {NgIf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {AboutCard} from "../../model/model";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {DataService} from "../../services/data.service";
@@ -8,7 +8,8 @@ import {DataService} from "../../services/data.service";
   selector: 'about-card',
   standalone: true,
   imports: [
-    NgIf
+    NgIf,
+    NgForOf
   ],
   templateUrl: './about-card.component.html',
   styleUrl: './about-card.component.scss'

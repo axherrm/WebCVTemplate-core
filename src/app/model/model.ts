@@ -98,7 +98,7 @@ export interface Section {
 export interface AboutCard {
   title: string;
   heading?: string;
-  text?: string;
+  text: string[];
 }
 
 export interface MailSettings {

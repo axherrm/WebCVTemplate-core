@@ -2,8 +2,13 @@
   <div class="card-content">
     <!--TODO: cut off text properly-->
     <div #text>
-      <span class="heading" [innerHTML]="content.heading"></span>
-      <span class="text" [innerHTML]="content.text"></span>
+      <div>
+        <span class="heading" *ngIf="content.heading" [innerHTML]="content.heading"></span>
+        <span [innerHTML]="content.text[0]"></span>
+      </div>
+      <div *ngFor="let textPart of content.text; first as isFirst">
+        <p *ngIf="!isFirst" [innerHTML]="textPart"></p>
+      </div>
       <ng-content></ng-content>
     </div>
   </div>
