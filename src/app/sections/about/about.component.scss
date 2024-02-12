@@ -2,7 +2,7 @@
   width: 80%;
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  gap: 3rem;
   :nth-child(2n) {
     --flex-row: row-reverse;
     --title-align: left;
