@@ -21,7 +21,7 @@ import {MainContentComponent} from "./main-content/main-content.component";
 
 gsap.registerPlugin(ScrollTrigger);
 
-import "./js/lenis.js";
+// import "./js/lenis.js";
 
 @Component({
   selector: 'app-root',
