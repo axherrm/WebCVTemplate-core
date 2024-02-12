@@ -1,5 +1,8 @@
 :host {
-  width: 80%;
+  width: 100%;
+  @container (min-width: 1000px) {
+    width: max(1000px, 80%)
+  }
   display: flex;
   flex-direction: column;
   gap: 3rem;

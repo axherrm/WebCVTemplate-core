@@ -52,6 +52,8 @@
   text-align: center;
   align-items: center;
 
+  container-type: inline-size;
+
   // for rotation
   position: relative;
   //transform-style: preserve-3d; // breaks background-attachment: fixed see https://bugzilla.mozilla.org/show_bug.cgi?id=1352915
