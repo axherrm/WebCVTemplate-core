@@ -1,21 +1,10 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {TimelineModule} from 'primeng/timeline';
-import {BadgeModule} from "primeng/badge";
+import {RouterOutlet} from "@angular/router";
 import gsap from 'gsap';
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import {DataService} from "./services/data.service";
-import {SpeedDialModule} from "primeng/speeddial";
-import {OverlayPanelModule} from "primeng/overlaypanel";
 import 'js-circle-progress';
-import {TimelineCardComponent} from "./components/timeline-card/timeline-card.component";
-import {HeadingCardComponent} from "./components/heading-card/heading-card.component";
-import {SkillsCardComponent} from "./components/skills-card/skills-card.component";
-import {NavbarDotComponent} from "./components/navbar-dot/navbar-dot.component";
 import {SidebarComponent} from "./sections/sidebar/sidebar.component";
-import {AboutCardComponent} from "./components/about-card/about-card.component";
-import {AboutComponent} from "./sections/about/about.component";
-import {ContactComponent} from "./sections/contact/contact.component";
 import {FooterSectionComponent} from "./sections/footer-section/footer-section.component";
 import {MainContentComponent} from "./main-content/main-content.component";
 
@@ -27,21 +16,9 @@ gsap.registerPlugin(ScrollTrigger);
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule,
-    TimelineModule,
-    BadgeModule,
-    SpeedDialModule,
-    OverlayPanelModule,
-    // Custom
-    TimelineCardComponent,
-    HeadingCardComponent,
-    SkillsCardComponent,
-    NavbarDotComponent,
     SidebarComponent,
-    AboutCardComponent,
-    AboutComponent,
-    ContactComponent,
-    FooterSectionComponent
+    FooterSectionComponent,
+    RouterOutlet
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
