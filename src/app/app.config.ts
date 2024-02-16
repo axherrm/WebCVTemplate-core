@@ -1,6 +1,7 @@
 import {ApplicationConfig} from '@angular/core';
 import {provideRouter} from "@angular/router";
-import {MainContentComponent} from "./main-content/main-content.component";
+import {MainContentComponent} from "./layout/main-content.component";
+import {provideAnimations} from "@angular/platform-browser/animations";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,6 +14,7 @@ export const appConfig: ApplicationConfig = {
         path: "",
         component: MainContentComponent
       },
-    ])
+    ]),
+    provideAnimations()
   ]
 };

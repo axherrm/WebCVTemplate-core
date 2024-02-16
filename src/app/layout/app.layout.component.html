@@ -1,0 +1,22 @@
+<!-- Absolute and fixed control elements-->
+<div #backgroundImgContainer id="background-img-container">
+  <img
+    [srcset]="dataService.getBackgroundSrcSet()"
+    sizes="100vw"
+    [alt]="'Image of ' + dataService.languagePack.heading"
+    fetchpriority="high" loading="eager"
+    (load)="onBackgroundLoaded()"
+  />
+  <img [src]="'data:image/jpg;base64,' + dataService.backgroundSettings.preview" alt="Preview of background image">
+</div>
+<div class="progressbar-container"><div #progress_bar class="progressbar"></div></div>
+<sidebar></sidebar>
+
+<!-- Main content -->
+<main>
+  <!-- Renders main-content with lang path parameter-->
+  <router-outlet></router-outlet>
+</main>
+
+<!-- Footer -->
+<footer-section></footer-section>

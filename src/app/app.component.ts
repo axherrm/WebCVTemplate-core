@@ -1,84 +1,58 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import {RouterOutlet} from "@angular/router";
-import gsap from 'gsap';
-import {ScrollTrigger} from "gsap/ScrollTrigger";
-import {DataService} from "./services/data.service";
-import 'js-circle-progress';
-import {SidebarComponent} from "./sections/sidebar/sidebar.component";
-import {FooterSectionComponent} from "./sections/footer-section/footer-section.component";
-import {MainContentComponent} from "./main-content/main-content.component";
-
-gsap.registerPlugin(ScrollTrigger);
-
-// import "./js/lenis.js";
+import {Component, HostListener} from '@angular/core';
+import {NgIf} from "@angular/common";
+import {MessageService} from "primeng/api";
+import {ToastModule} from "primeng/toast";
+import {AppLayoutComponent} from "./layout/app.layout.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    SidebarComponent,
-    FooterSectionComponent,
-    RouterOutlet
+    NgIf,
+    ToastModule,
+    AppLayoutComponent,
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  providers: [MessageService]
 })
 export class AppComponent {
 
-  @ViewChild("backgroundImgContainer", {read: ElementRef<HTMLDivElement>}) backgroundImageContainer: ElementRef<HTMLDivElement>;
-  @ViewChild("progress_bar", {read: ElementRef}) progressBar: ElementRef;
-  @ViewChild(SidebarComponent, {read: ElementRef}) sidebar: ElementRef;
-  @ViewChild(MainContentComponent) mainContent: MainContentComponent;
+  public windowWidth: number;
 
-  constructor(readonly dataService: DataService) {}
-
-  ngAfterViewInit(): void {
-    this.addProgressBarAnimation();
-    this.addSidebarAnimation();
+  constructor(readonly messageService: MessageService) {
   }
 
-  onBackgroundLoaded() {
-    while (!this.backgroundImageContainer.nativeElement.lastChild) {}
-    this.backgroundImageContainer.nativeElement.lastChild.remove();
+  ngOnInit(): void {
+    this.updateWindowWidth();
   }
 
-  addProgressBarAnimation() {
-    const tl: gsap.core.Timeline = gsap.timeline({
-      scrollTrigger: {
-        start: "top top",
-        trigger: "body",
-        end: "bottom bottom",
-        scrub: true,
-      }
+  ngAfterViewInit() {
+    if (this.windowWidth < 800) {
+      this.showMobileNotSupportedToast();
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.updateWindowWidth();
+  }
+
+  updateWindowWidth() {
+    const oldWidth = this.windowWidth;
+    this.windowWidth = window.innerWidth;
+    if (this.windowWidth < 800 && oldWidth >= 800) {
+      this.showMobileNotSupportedToast();
+    }
+  }
+
+  showMobileNotSupportedToast() {
+    this.messageService.add({
+      styleClass: "mobile-not-supported-toast",
+      severity: "info",
+      summary: "Unsupported",
+      detail: "This website does currently not support mobile devices. To see the website, please use a desktop device."
     });
-    tl.fromTo(this.progressBar.nativeElement, {
-      transform: "scaleX(0)"
-    }, {
-      transform: "scaleX(1)"
-    })
-  }
-
-  addSidebarAnimation() {
-    const tl: gsap.core.Timeline = gsap.timeline({
-      scrollTrigger: {
-        start: "top -50%",
-        trigger: "body",
-        end: "top -100%",
-        scrub: true,
-      }
-    });
-    tl
-      .to(this.backgroundImageContainer.nativeElement, {
-        filter: "blur(2px)"
-      })
-      .fromTo(this.sidebar.nativeElement, {
-        opacity: 0,
-        ease: "power1.in",
-        display: "none"
-      }, {
-        display: "var(--display-side-elements-flex)",
-        opacity: 1,
-      }, "<");
   }
 
 }
