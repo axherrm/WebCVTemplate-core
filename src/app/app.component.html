@@ -1,7 +1,11 @@
 <app-layout *ngIf="windowWidth >= 800; else mobileView"></app-layout>
 
 <ng-template #mobileView>
-  <object class="pdf-viewer" data="./assets/CV-static.pdf" type="application/pdf"></object>
+  <div class="pdf-viewer">
+    <object data="./assets/CV-static.pdf" type="application/pdf" style="min-width: 100%; min-height: 100%">
+      <p>You do not seem to have a functional PDF plug-in for this browser.</p>
+    </object>
+  </div>
 </ng-template>
 
 <!-- Enable toasts -->

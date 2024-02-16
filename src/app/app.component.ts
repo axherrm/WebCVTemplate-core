@@ -51,6 +51,7 @@ export class AppComponent {
       styleClass: "mobile-not-supported-toast",
       severity: "info",
       summary: "Unsupported",
+      life: 6000,
       detail: "This website does currently not support mobile devices. To see the website, please use a desktop device."
     });
   }
