@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {AboutComponent} from "../sections/about/about.component";
 import {BadgeModule} from "primeng/badge";
 import {ContactComponent} from "../sections/contact/contact.component";
@@ -41,6 +41,11 @@ export class MainContentComponent {
               readonly route: ActivatedRoute) {
     this.langService.langChange.subscribe(() => this.onLangChange());
     this.langService.searchForURLLang(this.route.snapshot.paramMap.get("lang"));
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState() {
+    this.langService.checkIfURLLangChanged(this.route.snapshot.params["lang"]);
   }
 
   ngAfterViewInit(): void {
