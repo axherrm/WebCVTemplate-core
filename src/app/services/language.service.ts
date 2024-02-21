@@ -1,6 +1,6 @@
-import {EventEmitter, HostListener, Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {DataService} from "./data.service";
-import {ActivatedRoute, OnSameUrlNavigation, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class LanguageService {
    */
   langChange: EventEmitter<string> = new EventEmitter<string>(true);
 
-  constructor(private dataService: DataService, readonly router: Router, readonly activatedRoute: ActivatedRoute) {
+  constructor(private dataService: DataService, readonly router: Router) {
     this.determineLanguageOnStartup();
   }
 
@@ -59,15 +59,6 @@ export class LanguageService {
     this.writeToURL(this.lang, true);
   }
 
-  checkIfURLLangChanged(lang: string) {
-    console.log("checkIfURLLangChanged", lang, this.lang)
-    console.log(location.pathname)
-    if (this.lang !== lang) {
-      console.log("if")
-      this.setLang(lang, false);
-    }
-  }
-
   /**
    * Sets new active language, writes it to local storage and (re-)loads data for language
    * @param newLang
@@ -78,18 +69,17 @@ export class LanguageService {
     localStorage.setItem("lang", this.lang);
     this.dataService.loadData(this.lang);
     this.langChange.emit(newLang);
+    document.documentElement.lang = newLang;
     if (writeToURL) {
       this.writeToURL(this.lang);
     }
   }
 
-  writeToURL(lang: string, replaceUrl: boolean = false, onSameUrlNavigation: OnSameUrlNavigation = "ignore") {
-    document.documentElement.lang = lang;
+  writeToURL(lang: string, replaceUrl: boolean = false) {
     this.router.navigate(
       [lang],
       {
         replaceUrl: replaceUrl,
-        onSameUrlNavigation: onSameUrlNavigation
       }
     );
   }

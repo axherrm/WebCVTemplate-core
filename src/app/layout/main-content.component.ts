@@ -43,9 +43,13 @@ export class MainContentComponent {
     this.langService.searchForURLLang(this.route.snapshot.paramMap.get("lang"));
   }
 
+  /**
+   * Used to fix a bug where the URL gets updated on popstate but the routing not.
+   * Simply reloads page.
+   */
   @HostListener('window:popstate', ['$event'])
   onPopState() {
-    this.langService.checkIfURLLangChanged(this.route.snapshot.params["lang"]);
+    location.reload();
   }
 
   ngAfterViewInit(): void {
