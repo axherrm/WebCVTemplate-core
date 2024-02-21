@@ -56,7 +56,7 @@ export class LanguageService {
         }
       }
     }
-    this.writeToURL(this.lang);
+    this.writeToURL(this.lang, true);
   }
 
   /**
@@ -69,14 +69,19 @@ export class LanguageService {
     localStorage.setItem("lang", this.lang);
     this.dataService.loadData(this.lang);
     this.langChange.emit(newLang);
+    document.documentElement.lang = newLang;
     if (writeToURL) {
       this.writeToURL(this.lang);
     }
   }
 
-  writeToURL(lang: string) {
-    document.documentElement.lang = lang;
-    this.router.navigate([lang]);
+  writeToURL(lang: string, replaceUrl: boolean = false) {
+    this.router.navigate(
+      [lang],
+      {
+        replaceUrl: replaceUrl,
+      }
+    );
   }
 
 }

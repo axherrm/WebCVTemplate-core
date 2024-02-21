@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {AboutComponent} from "../sections/about/about.component";
 import {BadgeModule} from "primeng/badge";
 import {ContactComponent} from "../sections/contact/contact.component";
@@ -41,6 +41,15 @@ export class MainContentComponent {
               readonly route: ActivatedRoute) {
     this.langService.langChange.subscribe(() => this.onLangChange());
     this.langService.searchForURLLang(this.route.snapshot.paramMap.get("lang"));
+  }
+
+  /**
+   * Used to fix a bug where the URL gets updated on popstate but the routing not.
+   * Simply reloads page.
+   */
+  @HostListener('window:popstate', ['$event'])
+  onPopState() {
+    location.reload();
   }
 
   ngAfterViewInit(): void {
