@@ -4,7 +4,7 @@
     [srcset]="dataService.getBackgroundSrcSet()"
     sizes="100vw"
     [alt]="'Image of ' + dataService.languagePack.heading"
-    fetchpriority="high" loading="eager"
+    fetchpriority="high" loading="eager" decoding="sync"
     (load)="onBackgroundLoaded()"
   />
   <img [src]="'data:image/jpg;base64,' + dataService.backgroundSettings.preview" alt="Preview of background image">
