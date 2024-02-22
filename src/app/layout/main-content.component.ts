@@ -1,4 +1,4 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, ElementRef, HostListener, Renderer2, ViewChildren} from '@angular/core';
 import {AboutComponent} from "../sections/about/about.component";
 import {BadgeModule} from "primeng/badge";
 import {ContactComponent} from "../sections/contact/contact.component";
@@ -33,13 +33,19 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class MainContentComponent {
 
+  @ViewChildren("letter", {read: ElementRef}) letters: ElementRef<HTMLSpanElement>[];
+
   alarmClockTimelines: gsap.core.Timeline[] = [];
 
   constructor(readonly dataService: DataService,
               readonly langService: LanguageService,
               readonly sidebarService: SidebarService,
-              readonly route: ActivatedRoute) {
-    this.langService.langChange.subscribe(() => this.onLangChange());
+              readonly route: ActivatedRoute,
+              private renderer: Renderer2) {
+    this.langService.langChange.subscribe(() => {
+      this.fixAlarmClockAnimation();
+      this.fixHeadingAfterLangChange();
+    });
     this.langService.searchForURLLang(this.route.snapshot.paramMap.get("lang"));
   }
 
@@ -70,7 +76,20 @@ export class MainContentComponent {
     this.sidebarService.addSelectedAnimation();
   }
 
-  onLangChange() {
+  /**
+   * Fix heading/subheading letters after lang change. Without this some letters have opacity 0 (due to the heading animation)
+   * if (sub-)heading differs at different languages.
+   */
+  fixHeadingAfterLangChange() {
+    this.letters.forEach(letter => {
+      this.renderer.setStyle(letter.nativeElement, "opacity", 1);
+    })
+  }
+
+  /**
+   * Fixes alarm clock animation when language is changed.
+   */
+  fixAlarmClockAnimation() {
     this.alarmClockTimelines.forEach(tl => tl.kill());
     this.alarmClockTimelines = [];
 

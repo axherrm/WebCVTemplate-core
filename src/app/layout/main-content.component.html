@@ -1,13 +1,15 @@
 <div id="home-start" style="position:relative; top: -30vh; display: table; height: 130vh; width: 100vw;">
   <div style="display: table-cell; vertical-align: middle; text-align: center;">
     <h1 id="main-heading">
-      <span class="heading-letter" *ngFor="let letter of dataService.languagePack.heading.split('')">
-        {{ letter.replace(" ", "&nbsp;") }}
+      <span #letter class="heading-letter"
+            *ngFor="let letter of dataService.languagePack.headingParts"
+            [innerHTML]="letter">
       </span>
     </h1>
     <h2 id="main-subheading">
-      <span class="subheading-letter" *ngFor="let letter of dataService.languagePack.subheading.split('')">
-        {{ letter.replace(" ", "&nbsp;") }}
+      <span #letter class="subheading-letter"
+            *ngFor="let letter of dataService.languagePack.subheadingParts"
+            [innerHTML]="letter">
       </span>
     </h2>
   </div>
@@ -16,46 +18,58 @@
 <div id="perspective-div" style="display: flex; flex-direction: column; align-items: center">
   <!-- [class.rotated]="sidebar.hovered" -->
   <div class="content-container">
-    <heading-card id="education-start" [heading]="dataService.languagePack.education" type="3" styleClass="alarm-clock-animated"></heading-card>
-    <p-timeline id="eduction-tl" [value]="dataService.education" align="alternate" [style]="{'width': '87.5%', 'display': 'inline-block'}">
+    <heading-card id="education-start" [heading]="dataService.languagePack.education" type="3"
+                  styleClass="alarm-clock-animated"></heading-card>
+    <p-timeline id="eduction-tl" [value]="dataService.education" align="alternate"
+                [style]="{'width': '87.5%', 'display': 'inline-block'}">
       <ng-template pTemplate="marker">
         <span class="dot shadow-4"></span>
       </ng-template>
       <ng-template pTemplate="content" let-educationItem>
         <timeline-card type="dark" [heading]="educationItem.heading" [subheading]="educationItem.subheading"
-                       [content]="educationItem.content" [bulletPoints]="educationItem.bulletPoints" styleClass="alarm-clock-animated">
+                       [content]="educationItem.content" [bulletPoints]="educationItem.bulletPoints"
+                       styleClass="alarm-clock-animated">
         </timeline-card>
       </ng-template>
       <ng-template pTemplate="opposite" let-educationItem>
-        <p-badge [value]="educationItem.date" size="large" styleClass="timeline-date-light alarm-clock-animated"></p-badge>
+        <p-badge [value]="educationItem.date" size="large"
+                 styleClass="timeline-date-light alarm-clock-animated"></p-badge>
       </ng-template>
     </p-timeline>
 
-    <heading-card id="experience-start" [heading]="dataService.languagePack.experience" type="3" styleClass="alarm-clock-animated"></heading-card>
-    <p-timeline id="experience-tl" [value]="dataService.experience" align="alternate" [style]="{'width': '87.5%', 'display': 'inline-block'}">
+    <heading-card id="experience-start" [heading]="dataService.languagePack.experience" type="3"
+                  styleClass="alarm-clock-animated"></heading-card>
+    <p-timeline id="experience-tl" [value]="dataService.experience" align="alternate"
+                [style]="{'width': '87.5%', 'display': 'inline-block'}">
       <ng-template pTemplate="marker">
         <span class="dot shadow-4"></span>
       </ng-template>
       <ng-template pTemplate="content" let-experienceItem>
         <timeline-card type="dark" [heading]="experienceItem.heading" [subheading]="experienceItem.subheading"
-                       [content]="experienceItem.content" [bulletPoints]="experienceItem.skills" styleClass="alarm-clock-animated">
+                       [content]="experienceItem.content" [bulletPoints]="experienceItem.skills"
+                       styleClass="alarm-clock-animated">
         </timeline-card>
       </ng-template>
       <ng-template pTemplate="opposite" let-experienceItem>
-        <p-badge [value]="experienceItem.date" size="large" styleClass="timeline-date-light alarm-clock-animated"></p-badge>
+        <p-badge [value]="experienceItem.date" size="large"
+                 styleClass="timeline-date-light alarm-clock-animated"></p-badge>
       </ng-template>
     </p-timeline>
 
-    <heading-card id="skills-start" [heading]="dataService.languagePack.skills" type="3" styleClass="alarm-clock-animated"></heading-card>
+    <heading-card id="skills-start" [heading]="dataService.languagePack.skills" type="3"
+                  styleClass="alarm-clock-animated"></heading-card>
     <div style="width: 75%; display: flex; flex-direction: column; flex-wrap: nowrap; gap: 1rem">
-      <skills-card class="alarm-clock-animated" *ngFor="let skillCategory of dataService.skillCategories" [category]="skillCategory"></skills-card>
+      <skills-card class="alarm-clock-animated" *ngFor="let skillCategory of dataService.skillCategories"
+                   [category]="skillCategory"></skills-card>
     </div>
 
-    <heading-card id="about-start" [heading]="dataService.languagePack.about" type="3" styleClass="alarm-clock-animated" style="margin-top: 5vh"></heading-card>
+    <heading-card id="about-start" [heading]="dataService.languagePack.about" type="3" styleClass="alarm-clock-animated"
+                  style="margin-top: 5vh"></heading-card>
 
     <about></about>
 
-    <heading-card id="contact-start" [heading]="dataService.languagePack.contact" type="3" styleClass="alarm-clock-animated" style="margin-top: 5vh"></heading-card>
+    <heading-card id="contact-start" [heading]="dataService.languagePack.contact" type="3"
+                  styleClass="alarm-clock-animated" style="margin-top: 5vh"></heading-card>
     <contact></contact>
   </div>
 </div>

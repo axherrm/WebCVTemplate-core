@@ -73,7 +73,12 @@ export class LanguagePack implements ILanguagePack {
   about: string;
   contact: string;
 
+  /**************************
+   *        Computed        *
+   **************************/
   sections: Section[];
+  headingParts: string[];
+  subheadingParts: string[];
 
   constructor(langPack: ILanguagePack) {
     Object.assign(this, langPack);
@@ -86,6 +91,12 @@ export class LanguagePack implements ILanguagePack {
       {name: this.about, id: "about-start", position: 4},
       {name: this.contact, id: "contact-start", position: 5},
     ];
+    this.headingParts = this.textToParts(this.heading);
+    this.subheadingParts = this.textToParts(this.subheading);
+  }
+
+  textToParts(text: string): string[] {
+    return text.split('').map(part => part.replace(" ", "&nbsp;"));
   }
 }
 
