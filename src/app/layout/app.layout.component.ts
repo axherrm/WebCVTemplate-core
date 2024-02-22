@@ -7,6 +7,7 @@ import {DataService} from "../services/data.service";
 import 'js-circle-progress';
 import gsap from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
+import {NgForOf} from "@angular/common";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,12 +17,15 @@ gsap.registerPlugin(ScrollTrigger);
   imports: [
     FooterSectionComponent,
     RouterOutlet,
-    SidebarComponent
+    SidebarComponent,
+    NgForOf
   ],
   templateUrl: './app.layout.component.html',
   styleUrl: './app.layout.component.scss'
 })
 export class AppLayoutComponent {
+
+  backgroundLoaded: boolean = false;
 
   @ViewChild("backgroundImgContainer", {read: ElementRef<HTMLDivElement>}) backgroundImageContainer: ElementRef<HTMLDivElement>;
   @ViewChild("progress_bar", {read: ElementRef}) progressBar: ElementRef;
@@ -36,8 +40,11 @@ export class AppLayoutComponent {
   }
 
   onBackgroundLoaded() {
-    while (!this.backgroundImageContainer.nativeElement.lastChild) {}
-    this.backgroundImageContainer.nativeElement.lastChild.remove();
+    if (!this.backgroundLoaded) {
+      while (!this.backgroundImageContainer.nativeElement.lastChild) {}
+      this.backgroundImageContainer.nativeElement.lastChild.remove();
+      this.backgroundLoaded = true;
+    }
   }
 
   addProgressBarAnimation() {

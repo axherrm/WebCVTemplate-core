@@ -9,7 +9,9 @@
   height: 100vh;
   z-index: -100;
   display: flex;
-  img {
+  justify-content: center;
+  align-items: center;
+  .background-img {
     position: relative;
     min-width:100vw;
     min-height:100vh;
@@ -21,7 +23,7 @@
     &:nth-child(2) {
       z-index: -81;
       // position both images on top of each other
-      transform: translateX(-100vw);
+      position: absolute;
     }
   }
 }

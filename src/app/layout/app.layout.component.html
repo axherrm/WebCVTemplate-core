@@ -1,13 +1,11 @@
 <!-- Absolute and fixed control elements-->
 <div #backgroundImgContainer id="background-img-container">
-  <img
-    [srcset]="dataService.getBackgroundSrcSet()"
-    sizes="100vw"
-    [alt]="'Image of ' + dataService.languagePack.heading"
-    fetchpriority="high" loading="eager" decoding="sync"
-    (load)="onBackgroundLoaded()"
-  />
-  <img [src]="'data:image/jpg;base64,' + dataService.backgroundSettings.preview" alt="Preview of background image">
+  <picture>
+    <source *ngFor="let src of dataService.backgroundSettings.imageOptions" [srcset]="src.path" [media]="src.media">
+    <img class="background-img" src="./assets/avatar/600.png" alt="" fetchpriority="low" loading="eager" decoding="sync"
+    (load)="onBackgroundLoaded()" alt="Background image">
+  </picture>
+  <img class="background-img" [src]="'data:image/jpg;base64,' + dataService.backgroundSettings.preview" alt="Preview of background image">
 </div>
 <div class="progressbar-container"><div #progress_bar class="progressbar"></div></div>
 <sidebar></sidebar>

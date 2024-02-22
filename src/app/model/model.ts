@@ -136,9 +136,11 @@ export interface SocialMediaItem {
   link: string;
 }
 
-export interface BackgroundSettings {
+export interface IBackgroundSettings {
   backgroundImageFolder: string;
-  resolutions: number[];
+  widths: number[];
+  defaultWidth: number;
+  aspectRatio: number;
   fileExtension: string;
   /**
    * Base64 encoded low res JPG, maximum of 10KB as this data is inlined.
