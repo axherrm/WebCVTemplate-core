@@ -22,12 +22,6 @@
     transform-origin: left bottom;
     flex-direction: row;
 
-    .triangle {
-      margin-left: 1.5rem;
-      border-bottom: var(--triangle-height) solid transparent;
-      border-right: var(--triangle-width) solid rgba(226, 38, 255, 0.8);
-    }
-
     .fake-triangle {
       transform: translateX(1.4rem) rotateZ(45deg);
     }
@@ -37,12 +31,6 @@
     transform-origin: right bottom;
     flex-direction: row-reverse;
     align-self: flex-end;
-
-    .triangle {
-      margin-right: 1.5rem;
-      border-bottom: var(--triangle-height) solid transparent;
-      border-left: var(--triangle-width) solid rgba(226, 38, 255, 0.8);
-    }
 
     .fake-triangle {
       transform: translateX(-1.4rem) rotateZ(-45deg);
@@ -73,21 +61,19 @@
 
 .message-box {
   position: relative;
-  align-self: center;
+  align-self: stretch;
   background: linear-gradient(90deg, #a445b2, #fa4299);
   border-radius: 1rem;
   padding: 1.5rem;
   text-align: left;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   &.not-received {
     filter: brightness(0.5);
   }
-}
-
-.triangle {
-  margin-top: calc((var(--1-row-height) - var(--triangle-height))  / 2);
-  width: 0;
-  height: 0;
 }
 
 .fake-triangle {
