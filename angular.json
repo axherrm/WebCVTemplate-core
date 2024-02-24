@@ -49,7 +49,8 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              {"glob": "**/*", "ignore": ["data/*", "index.html"], "input": "./../input", "output": "./"}
+              {"glob": "**/*", "ignore": ["data/**", "index.html"], "input": "./../input", "output": "./"},
+              "src/assets"
             ],
             "styles": [
               "src/styles.scss",
@@ -108,25 +109,6 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "buildTarget": "CV:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              {"glob": "**/*", "input": "./input", "output": "./"}
-            ],
-            "styles": [
-              "src/styles.scss",
-              "node_modules/primeng/resources/themes/lara-light-blue/theme.css"
-            ],
-            "scripts": []
           }
         }
       }
