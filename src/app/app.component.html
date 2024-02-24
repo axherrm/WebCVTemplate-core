@@ -2,9 +2,14 @@
 
 <ng-template #mobileView>
   <div class="pdf-viewer">
-    <object data="./assets/CV-static.pdf" type="application/pdf" style="min-width: 100%; min-height: 100%">
+    <object *ngIf="!environment.allInOne; else allInOnePDF" data="./assets/CV-static.pdf" type="application/pdf" style="min-width: 100%; min-height: 100%">
       <p>You do not seem to have a functional PDF plug-in for this browser.</p>
     </object>
+    <ng-template #allInOnePDF>
+      <object data="inlinePDF()" type="application/pdf" style="min-width: 100%; min-height: 100%">
+        <p>You do not seem to have a functional PDF plug-in for this browser.</p>
+      </object>
+    </ng-template>
   </div>
 </ng-template>
 

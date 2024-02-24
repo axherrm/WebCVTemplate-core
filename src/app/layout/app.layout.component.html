@@ -3,12 +3,14 @@
   <picture *ngIf="!environment.allInOne">
     <source *ngFor="let src of dataService.backgroundSettings.imageOptions" [srcset]="src.path" [media]="src.media">
     <img class="background-img" [src]="dataService.backgroundSettings.defaultOption.path"
-         fetchpriority="low" loading="eager" decoding="sync" (load)="onBackgroundLoaded()" alt="Background image">
+         fetchpriority="high" loading="eager" decoding="sync" (load)="onBackgroundLoaded()" alt="Background image">
   </picture>
-  <img *ngIf="!environment.allInOne" class="background-img"
+  <img *ngIf="!environment.allInOne; else allInOne1Img" class="background-img"
        [src]="'data:image/jpg;base64,' + dataService.backgroundSettings.preview" alt="Preview of background image">
-  <img *ngIf="environment.allInOne" class="background-img" [src]="dataService.backgroundSettings.defaultOption.path"
-       fetchpriority="low" loading="eager" decoding="sync" alt="Background image">
+  <ng-template #allInOne1Img>
+    <img class="background-img" src="inlineBackgroundImg()"
+                    fetchpriority="high" loading="eager" decoding="sync" alt="Background image">
+  </ng-template>
 </div>
 <div class="progressbar-container"><div #progress_bar class="progressbar"></div></div>
 <sidebar></sidebar>
@@ -16,7 +18,8 @@
 <!-- Main content -->
 <main>
   <!-- Renders main-content with lang path parameter-->
-  <router-outlet></router-outlet>
+  <router-outlet *ngIf="!environment.allInOne; else mainContent"></router-outlet>
+  <ng-template #mainContent><main-content></main-content></ng-template>
 </main>
 
 <!-- Footer -->

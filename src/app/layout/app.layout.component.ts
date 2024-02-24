@@ -20,12 +20,15 @@ gsap.registerPlugin(ScrollTrigger);
     RouterOutlet,
     SidebarComponent,
     NgForOf,
-    NgIf
+    NgIf,
+    MainContentComponent
   ],
   templateUrl: './app.layout.component.html',
   styleUrl: './app.layout.component.scss'
 })
 export class AppLayoutComponent {
+
+  protected readonly environment = environment;
 
   backgroundLoaded: boolean = false;
 
@@ -87,6 +90,4 @@ export class AppLayoutComponent {
         opacity: 1,
       }, "<");
   }
-
-  protected readonly environment = environment;
 }
