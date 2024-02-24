@@ -1,6 +1,7 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {DataService} from "./data.service";
 import {Router} from "@angular/router";
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -47,16 +48,18 @@ export class LanguageService {
    * @param langParam
    */
   searchForURLLang(langParam: string | null) {
-    if (langParam) {
-      const lang = langParam.trim();
-      if (this.dataService.loadedLanguages.includes(lang)) {
-        if (this.lang !== lang) {
-          this.setLang(lang, true);
-          return;
+    if (environment.propagateLangToURL) {
+      if (langParam) {
+        const lang = langParam.trim();
+        if (this.dataService.loadedLanguages.includes(lang)) {
+          if (this.lang !== lang) {
+            this.setLang(lang, true);
+            return;
+          }
         }
       }
+      this.writeToURL(this.lang, true);
     }
-    this.writeToURL(this.lang, true);
   }
 
   /**
@@ -76,12 +79,14 @@ export class LanguageService {
   }
 
   writeToURL(lang: string, replaceUrl: boolean = false) {
-    this.router.navigate(
-      [lang],
-      {
-        replaceUrl: replaceUrl,
-      }
-    );
+    if (environment.propagateLangToURL) {
+      this.router.navigate(
+        [lang],
+        {
+          replaceUrl: replaceUrl,
+        }
+      );
+    }
   }
 
 }

@@ -73,10 +73,13 @@
               ],
               "outputHashing": "all"
             },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
+            "allin1": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.allin1.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -87,11 +90,11 @@
             "production": {
               "buildTarget": "CV:build:production"
             },
-            "development": {
-              "buildTarget": "CV:build:development"
+            "allin1": {
+              "buildTarget": "CV:build:allin1"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "production"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
