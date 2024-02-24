@@ -52,8 +52,7 @@
               {"glob": "**/*", "ignore": ["data/*", "index.html"], "input": "./../input", "output": "./"}
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/primeng/resources/themes/lara-light-blue/theme.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -73,10 +72,21 @@
               ],
               "outputHashing": "all"
             },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
+            "allin1": {
+              "optimization": {
+                "fonts": false,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false,
+                  "removeSpecialComments": true
+                }
+              },
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.allin1.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -87,11 +97,11 @@
             "production": {
               "buildTarget": "CV:build:production"
             },
-            "development": {
-              "buildTarget": "CV:build:development"
+            "allin1": {
+              "buildTarget": "CV:build:allin1"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "production"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -112,8 +122,7 @@
               {"glob": "**/*", "input": "./input", "output": "./"}
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/primeng/resources/themes/lara-light-blue/theme.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }

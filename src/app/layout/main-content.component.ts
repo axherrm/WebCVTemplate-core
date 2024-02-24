@@ -15,7 +15,7 @@ import {SidebarService} from "../services/sidebar.service";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
-  selector: 'layout',
+  selector: 'main-content',
   standalone: true,
   imports: [
     AboutComponent,

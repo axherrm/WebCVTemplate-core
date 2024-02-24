@@ -3,6 +3,7 @@ import {NgIf} from "@angular/common";
 import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {AppLayoutComponent} from "./layout/app.layout.component";
+import {environment} from "../environments/environment";
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,8 @@ import {AppLayoutComponent} from "./layout/app.layout.component";
   providers: [MessageService]
 })
 export class AppComponent {
+
+  protected readonly environment = environment;
 
   public windowWidth: number;
 

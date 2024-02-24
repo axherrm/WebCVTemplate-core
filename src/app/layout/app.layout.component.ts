@@ -7,7 +7,8 @@ import {DataService} from "../services/data.service";
 import 'js-circle-progress';
 import gsap from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
+import {environment} from "../../environments/environment";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,12 +19,16 @@ gsap.registerPlugin(ScrollTrigger);
     FooterSectionComponent,
     RouterOutlet,
     SidebarComponent,
-    NgForOf
+    NgForOf,
+    NgIf,
+    MainContentComponent
   ],
   templateUrl: './app.layout.component.html',
   styleUrl: './app.layout.component.scss'
 })
 export class AppLayoutComponent {
+
+  protected readonly environment = environment;
 
   backgroundLoaded: boolean = false;
 
@@ -85,5 +90,4 @@ export class AppLayoutComponent {
         opacity: 1,
       }, "<");
   }
-
 }

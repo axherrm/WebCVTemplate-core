@@ -18,6 +18,7 @@ export class BackgroundSettings implements IBackgroundSettings {
    **************************/
 
   imageOptions: BackgroundImageOption[];
+  defaultOption: BackgroundImageOption;
 
   constructor(settings: IBackgroundSettings) {
     Object.assign(this, settings);
@@ -39,5 +40,9 @@ export class BackgroundSettings implements IBackgroundSettings {
           media: `(min-width: ${width}px), (min-height: ${Math.floor(width / this.aspectRatio)}px)`
         }
       });
+    this.defaultOption = {
+      path: `${this.backgroundImageFolder}${this.defaultWidth}${this.fileExtension}`,
+      media: ""
+    };
   }
 }
