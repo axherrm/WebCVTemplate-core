@@ -73,7 +73,7 @@ export class MainContentComponent {
     for (let el of document.getElementsByClassName("alarm-clock-animated")) {
       this.addAlarmClockAnimation(el);
     }
-    this.sidebarService.addSelectedAnimation();
+    setTimeout(() => this.sidebarService.addSelectedAnimation(), 1);
   }
 
   /**
