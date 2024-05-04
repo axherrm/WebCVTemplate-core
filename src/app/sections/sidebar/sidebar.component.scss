@@ -65,6 +65,8 @@
 
     transition: background 300ms ease-in-out;
 
+    cursor: pointer;
+
     &:hover {
       background: rgba(0, 0, 0, 0.3);
     }
